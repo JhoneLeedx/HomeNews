@@ -20,8 +20,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
+import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
 import com.jhonlee.homenews.util.SharedPreferenceUtil;
 import com.jhonlee.homenews.view.news.NewsFragment;
@@ -32,6 +35,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,7 +85,9 @@ public class MainActivity extends AppCompatActivity
         //initNavigationView();
         initTabTitle();
        // initFragment(savedInstanceState);
-
+        View view = navigationView.getHeaderView(0);
+        ImageView ImgTitle = (ImageView)(view).findViewById(R.id.imageView);
+        Glide.with(this).load(R.drawable.test).bitmapTransform(new CropCircleTransformation(this)).into(ImgTitle);
     }
     private void initTabTitle() {
 
