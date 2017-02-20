@@ -121,4 +121,11 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         intent.putExtra("author",resultBean.getWho());
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenter!=null)
+            presenter = null;
+    }
 }

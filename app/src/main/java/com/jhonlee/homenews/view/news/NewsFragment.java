@@ -117,4 +117,11 @@ public class NewsFragment extends Fragment implements NewsContract.View,NewsList
         intent.putExtra("imgurl",news.getThumbnail_pic_s());
         startActivity(intent);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (presenter!=null)
+            presenter = null;
+    }
 }

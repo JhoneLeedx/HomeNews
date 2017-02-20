@@ -44,12 +44,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     private String mUrl;
     private String mImgUrl;
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-        }
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +55,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         initView();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回按钮
-       // initWebViewSettings(mView);
+        initWebViewSettings(mView);
     }
 
     @Override
@@ -71,7 +66,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     private void initWebViewSettings(WebView webView) {
         //能够和js交互
-        webView.getSettings().setJavaScriptEnabled(true);
+       // webView.getSettings().setJavaScriptEnabled(true);
         //缩放,设置为不能缩放可以防止页面上出现放大和缩小的图标
         webView.getSettings().setBuiltInZoomControls(false);
         //缓存

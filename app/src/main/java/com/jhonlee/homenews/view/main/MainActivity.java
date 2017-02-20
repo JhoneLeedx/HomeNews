@@ -192,4 +192,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void startIntent(Activity activity){
+        Intent intent = new Intent(this,activity.getClass());
+        startActivity(intent);
+    }
 }
