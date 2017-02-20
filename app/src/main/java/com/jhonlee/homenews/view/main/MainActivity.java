@@ -1,5 +1,6 @@
 package com.jhonlee.homenews.view.main;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
 import com.jhonlee.homenews.util.SharedPreferenceUtil;
+import com.jhonlee.homenews.view.benefit.BenefitActivity;
 import com.jhonlee.homenews.view.news.NewsFragment;
 import com.jhonlee.homenews.view.send.SendActivity;
 
@@ -181,6 +183,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (item.getItemId()) {
+            case R.id.nav_pic:
+                startActivity(new Intent(this,BenefitActivity.class));
+                break;
+            case R.id.nav_nba:
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

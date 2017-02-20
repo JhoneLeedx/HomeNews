@@ -2,6 +2,8 @@ package com.jhonlee.homenews.view.news;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -16,6 +18,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
@@ -41,18 +44,31 @@ public class NewsDetailActivity extends AppCompatActivity {
 
     private String mUrl;
     private String mImgUrl;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsdetail);
         ButterKnife.bind(this);
+        mToolbar.setTitle("");
+        initView();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//返回按钮
-        initView();
        // initWebViewSettings(mView);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
+
     private void initWebViewSettings(WebView webView) {
         //能够和js交互
         webView.getSettings().setJavaScriptEnabled(true);
@@ -83,16 +99,27 @@ public class NewsDetailActivity extends AppCompatActivity {
         mView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                mToolbar.setTitle(view.getTitle());
+                mToolbar.setTitle(mView.getTitle());
                 if (newProgress == 100) {
                     //加载完网页进度条消失
                     mLoading.setVisibility(View.GONE);
+
                 } else {
                     //开始加载网页时显示进度条
                     mLoading.setVisibility(View.VISIBLE);
                     //设置进度值
                 }
+
+
+
             }
+
+    /*        @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                int currentapiVersion=android.os.Build.VERSION.SDK_INT;
+                  //  mToolbar.setTitle(title);
+            }*/
         });
     }
     @Override

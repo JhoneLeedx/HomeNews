@@ -2,7 +2,10 @@ package com.jhonlee.homenews.network.api;
 
 import android.util.Log;
 
+import com.jhonlee.homenews.network.IGankInfo;
 import com.jhonlee.homenews.network.INewsRequest;
+import com.jhonlee.homenews.network.IRobot;
+import com.jhonlee.homenews.pojo.GankInfoToken;
 import com.jhonlee.homenews.pojo.Token;
 import com.jhonlee.homenews.util.Constants;
 
@@ -29,24 +32,34 @@ public class NetworkApi {
     private Retrofit newRf;
     private Retrofit nbaRf;
     private Retrofit robotRf;
+    private Retrofit gankRf;
 
     private INewsRequest news;
+    private IGankInfo info;
+    private IRobot robot;
 
     private NetworkApi(){
         newRf = getRetrofit(Constants.NEWS_URL);
         nbaRf = getRetrofit(Constants.NBA_URL);
         robotRf = getRetrofit(Constants.ROBOT_URL);
-
+        gankRf = getRetrofit(Constants.GANK_URL);
 
         news = newRf.create(INewsRequest.class);
+        info = gankRf.create(IGankInfo.class);
+        robot = robotRf.create(IRobot.class);
     }
 
-    public Observable<Token> getNews(String type){
-
-        Observable<Token> observable = news.getNews(Constants.NEWS_APPKEY,type);
-        return observable;
+    public IRobot getRobot() {
+        return robot;
     }
 
+    public IGankInfo getInfo() {
+        return info;
+    }
+
+    public INewsRequest getNews() {
+        return news;
+    }
 
     public synchronized static NetworkApi getNetworkApi(){
         if (api==null)

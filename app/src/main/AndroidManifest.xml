@@ -24,6 +24,8 @@
         <activity android:name=".view.news.NewsDetailActivity"/>
         <activity android:name=".view.main.MainNewsActivity" />
         <activity android:name=".view.send.SendActivity" />
+        <activity android:name=".view.benefit.BenefitActivity" />
+        <activity android:name=".view.benefit.BenefitDetailActivity" />
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ package com.jhonlee.homenews.model;
 import com.jhonlee.homenews.contract.NewsContract;
 import com.jhonlee.homenews.network.api.NetworkApi;
 import com.jhonlee.homenews.pojo.Token;
+import com.jhonlee.homenews.util.Constants;
 
 import rx.Observable;
 
@@ -18,6 +19,6 @@ public class NewsModelImpl implements NewsContract.Model {
     @Override
     public Observable<Token> getNews(String type) {
 
-        return NetworkApi.getNetworkApi().getNews(type);
+        return NetworkApi.getNetworkApi().getNews().getNews(Constants.NEWS_APPKEY,type);
     }
 }
