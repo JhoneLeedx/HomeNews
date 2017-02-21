@@ -74,7 +74,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
     }
     private void initView(){
         presenter = new GankPresenterImpl(this);
-        presenter.showPic(43);
+        presenter.showPic(20);
         mList = new ArrayList<>();
         adapter = new BenefitAdapter(this,mList,this);
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
@@ -85,7 +85,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.showPic(43);
+                presenter.showPic(20);
                 refresh.setRefreshing(false);
             }
         });
