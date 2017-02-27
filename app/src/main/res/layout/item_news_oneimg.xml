@@ -1,53 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:padding="3dp">
-    <RelativeLayout
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="1dp"
+    app:cardPreventCornerOverlap="true">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_titile"
-            android:paddingTop="20dp"
-            android:paddingLeft="3dp"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_titile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"
+                android:paddingRight="2dp"
+                android:paddingTop="20dp"
+                android:text="咘咘掌握了新技能 玩单杠姿势666"
+                android:textColor="@android:color/background_dark"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-02-17 14:04"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:id="@+id/tv_auth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="腾讯娱乐"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="8sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/image_01"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:paddingRight="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="咘咘掌握了新技能 玩单杠姿势666"
-            android:textColor="@android:color/background_dark"/>
-        <LinearLayout
-            android:layout_marginTop="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="8sp"
-                android:text="2017-02-17 14:04"/>
-            <TextView
-                android:id="@+id/tv_auth"
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="8sp"
-                android:textColor="@android:color/darker_gray"
-                android:text="腾讯娱乐"/>
-        </LinearLayout>
-    </RelativeLayout>
-    <ImageView
-        android:id="@+id/image_01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:paddingRight="2dp"
-        android:src="@drawable/test"/>
-</LinearLayout>
+            android:scaleType="fitXY"
+            android:src="@drawable/test" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

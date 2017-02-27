@@ -79,7 +79,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         adapter = new BenefitAdapter(this,mList,this);
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recycle.setLayoutManager(manager);
-        recycle.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+       // recycle.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recycle.setAdapter(adapter);
         recycle.setItemAnimator(new DefaultItemAnimator());
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

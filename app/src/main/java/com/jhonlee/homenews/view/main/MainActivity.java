@@ -29,8 +29,11 @@ import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
 import com.jhonlee.homenews.util.SharedPreferenceUtil;
 import com.jhonlee.homenews.view.benefit.BenefitActivity;
+import com.jhonlee.homenews.view.douban.DoubanActivity;
+import com.jhonlee.homenews.view.douban.DoubanAdapter;
 import com.jhonlee.homenews.view.news.NewsFragment;
 import com.jhonlee.homenews.view.send.SendActivity;
+import com.jhonlee.homenews.view.send.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -187,6 +190,10 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(this,BenefitActivity.class));
                 break;
             case R.id.nav_nba:
+                startActivity(new Intent(this,WebViewActivity.class));
+                break;
+            case R.id.nav_douban:
+                startActivity(new Intent(this,DoubanActivity.class));
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

@@ -5,12 +5,20 @@
     caijing(财经),shishang(时尚)-->
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/ic_home"
+            android:title="首页" />
+        <item
             android:id="@+id/nav_nba"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/nba_icon"
             android:title="NBA" />
         <item
+            android:id="@+id/nav_douban"
+            android:icon="@drawable/ic_douban"
+            android:title="豆瓣一刻" />
+        <item
             android:id="@+id/nav_pic"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_photo"
             android:title="福利" />
     </group>
 
@@ -18,11 +26,11 @@
         <menu>
             <item
                 android:id="@+id/nav_setting"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_settings"
                 android:title="设置" />
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_info"
                 android:title="关于" />
         </menu>
     </item>

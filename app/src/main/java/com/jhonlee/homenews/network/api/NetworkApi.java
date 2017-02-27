@@ -2,6 +2,7 @@ package com.jhonlee.homenews.network.api;
 
 import android.util.Log;
 
+import com.jhonlee.homenews.network.IDouban;
 import com.jhonlee.homenews.network.IGankInfo;
 import com.jhonlee.homenews.network.INewsRequest;
 import com.jhonlee.homenews.network.IRobot;
@@ -33,20 +34,30 @@ public class NetworkApi {
     private Retrofit nbaRf;
     private Retrofit robotRf;
     private Retrofit gankRf;
+    private Retrofit doubanRf;
+
 
     private INewsRequest news;
     private IGankInfo info;
     private IRobot robot;
+    private IDouban douban;
+
 
     private NetworkApi(){
         newRf = getRetrofit(Constants.NEWS_URL);
         nbaRf = getRetrofit(Constants.NBA_URL);
         robotRf = getRetrofit(Constants.ROBOT_URL);
         gankRf = getRetrofit(Constants.GANK_URL);
+        doubanRf = getRetrofit(Constants.DOUBAN_URL);
 
         news = newRf.create(INewsRequest.class);
         info = gankRf.create(IGankInfo.class);
         robot = robotRf.create(IRobot.class);
+        douban =doubanRf.create(IDouban.class);
+    }
+
+    public IDouban getDouban() {
+        return douban;
     }
 
     public IRobot getRobot() {

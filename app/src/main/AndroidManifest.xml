@@ -31,6 +31,8 @@
         <activity android:name=".view.send.SendActivity" />
         <activity android:name=".view.benefit.BenefitActivity" />
         <activity android:name=".view.benefit.BenefitDetailActivity" />
+        <activity android:name=".view.send.WebViewActivity" />
+        <activity android:name=".view.douban.DoubanActivity" />
     </application>
 
 </manifest>

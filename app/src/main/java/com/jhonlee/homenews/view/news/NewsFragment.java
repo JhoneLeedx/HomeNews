@@ -111,10 +111,11 @@ public class NewsFragment extends Fragment implements NewsContract.View,NewsList
     }
 
     @Override
-    public void showNews(News news) {
+    public void showNews(Object news) {
         Intent intent = new Intent(getContext(),NewsDetailActivity.class);
-        intent.putExtra("url",news.getUrl());
-        intent.putExtra("imgurl",news.getThumbnail_pic_s());
+
+        intent.putExtra("url",((News)news).getUrl());
+        intent.putExtra("imgurl",((News)news).getThumbnail_pic_s());
         startActivity(intent);
     }
 

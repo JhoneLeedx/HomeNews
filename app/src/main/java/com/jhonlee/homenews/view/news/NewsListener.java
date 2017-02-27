@@ -8,5 +8,5 @@ import com.jhonlee.homenews.pojo.News;
 
 public interface NewsListener {
 
-    void showNews(News news);
+    void showNews(Object news);
 }
