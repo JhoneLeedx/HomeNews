@@ -45,7 +45,7 @@ public class DoubanAdapter extends RecyclerView.Adapter<ItemOneImgHolder> {
     public void onBindViewHolder(ItemOneImgHolder holder, int position) {
         final DoubanToken.PostsBean bean = mList.get(position);
         if (bean!=null) {
-            holder.getmTitle().setText(bean.getAbstractX());
+            holder.getmTitle().setText(bean.getTitle());
             holder.getmAuth().setText(bean.getAuthor()==null||bean.getAuthor().equals("")?"":bean.getAuthor().getName());
             holder.getmTime().setText(bean.getDate());
             if (bean.getThumbs().size() > 0) {
@@ -54,6 +54,8 @@ public class DoubanAdapter extends RecyclerView.Adapter<ItemOneImgHolder> {
                         .error(R.drawable.ic_error)
                         .placeholder(R.drawable.defaults)
                         .into(holder.getImage01());
+            }else {
+                holder.getImage01().setVisibility(View.GONE);
             }
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
