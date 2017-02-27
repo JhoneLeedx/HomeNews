@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * Created by JhoneLee on 2017/2/27.
  */
 
-public class DoubanActivity extends AppCompatActivity implements DoubanContract.View,NewsListener{
+public class DoubanActivity extends AppCompatActivity implements DoubanContract.View, NewsListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -72,12 +72,12 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         presenter = new DoubanPresenterImpl(this);
         final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         presenter.showNews(format.format(Calendar.getInstance().getTimeInMillis()));
         mList = new ArrayList<>();
-        adapter = new DoubanAdapter(this,mList,this);
+        adapter = new DoubanAdapter(this, mList, this);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recycle.setLayoutManager(manager);
         //recycle.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -90,9 +90,36 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
                 refresh.setRefreshing(false);
             }
         });
+        //recyclerview 滑动到底部时监听事件
+        recycle.setOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            boolean isSlidingToLast = false;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                // 当不滚动时
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // 获取最后一个完全显示的item position
+                    int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
+                    int totalItemCount = manager.getItemCount();
+
+                    // 判断是否滚动到底部并且是向下滑动
+                    if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
+                        Calendar c = Calendar.getInstance();
+                        c.set(mYear, mMonth, --mDay);
+                        // presenter.loadMore(c.getTimeInMillis());
+                    }
+                }
+
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
+
     @OnClick(R.id.fab)
-    public void fabClick(){
+    public void fabClick() {
         Calendar now = Calendar.getInstance();
         now.set(mYear, mMonth, mDay);
         DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -106,7 +133,7 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
                 temp.set(year, monthOfYear, dayOfMonth);
                 presenter.showNews(new SimpleDateFormat("yyyy-MM-dd").format(temp.getTimeInMillis()));
             }
-        },now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
         dialog.setMaxDate(Calendar.getInstance());
         Calendar minDate = Calendar.getInstance();
         // 2013.5.20是知乎日报api首次上线
@@ -116,18 +143,20 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
 
         dialog.show(getFragmentManager(), "DatePickerDialog");
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void showError(String error) {
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -143,7 +172,7 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
 
     @Override
     public void showNews(List<DoubanToken.PostsBean> list) {
-        if (mList.size()>0){
+        if (mList.size() > 0) {
             mList.clear();
         }
         mList.addAll(list);
@@ -152,10 +181,10 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
 
     @Override
     public void showNews(Object news) {
-        Intent intent = new Intent(this,NewsDetailActivity.class);
+        Intent intent = new Intent(this, NewsDetailActivity.class);
 
-        intent.putExtra("url",((DoubanToken.PostsBean)news).getUrl());
-        intent.putExtra("imgurl",((DoubanToken.PostsBean)news).getThumbs().size()==0?"":((DoubanToken.PostsBean)news).getThumbs().get(0).getLarge().getUrl());
+        intent.putExtra("url", ((DoubanToken.PostsBean) news).getUrl());
+        intent.putExtra("imgurl", ((DoubanToken.PostsBean) news).getThumbs().size() == 0 ? "" : ((DoubanToken.PostsBean) news).getThumbs().get(0).getLarge().getUrl());
         startActivity(intent);
     }
 }
