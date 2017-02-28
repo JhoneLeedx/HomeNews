@@ -18,55 +18,86 @@ import java.util.List;
  * Created by JhoneLee on 2017/2/27.
  */
 
-public class DoubanAdapter extends RecyclerView.Adapter<ItemOneImgHolder> {
+public class DoubanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<DoubanToken.PostsBean> mList;
     private Context mContext;
     private NewsListener listener;
 
-    public DoubanAdapter(Context mContext, List<DoubanToken.PostsBean> mList,NewsListener listener) {
+    private static final int TYPE_NORMAL = 0x00;
+    private static final int TYPE_FOOTER = 0x02;
+
+    public DoubanAdapter(Context mContext, List<DoubanToken.PostsBean> mList, NewsListener listener) {
         this.mContext = mContext;
         this.mList = mList;
         this.listener = listener;
     }
 
     @Override
-    public ItemOneImgHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int resId;
         View view;
-        resId = R.layout.item_news_oneimg;
-        view = LayoutInflater.from(mContext).inflate(resId, parent, false);
-        ItemOneImgHolder holder = new ItemOneImgHolder(view);
+        RecyclerView.ViewHolder holder = null;
+        if (viewType == TYPE_NORMAL) {
+            resId = R.layout.item_news_oneimg;
+            view = LayoutInflater.from(mContext).inflate(resId, parent, false);
+            holder = new ItemOneImgHolder(view);
+        } else if (viewType == TYPE_FOOTER) {
+            resId = R.layout.list_footer;
+            view = LayoutInflater.from(mContext).inflate(resId, parent, false);
+            holder = new FooterViewHolder(view);
+        }
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ItemOneImgHolder holder, int position) {
-        final DoubanToken.PostsBean bean = mList.get(position);
-        if (bean!=null) {
-            holder.getmTitle().setText(bean.getTitle());
-            holder.getmAuth().setText(bean.getAuthor()==null||bean.getAuthor().equals("")?"":bean.getAuthor().getName());
-            holder.getmTime().setText(bean.getDate());
-            if (bean.getThumbs().size() > 0) {
-                Glide.with(mContext)
-                        .load(bean.getThumbs().get(0).getSmall().getUrl())
-                        .error(R.drawable.ic_error)
-                        .placeholder(R.drawable.defaults)
-                        .into(holder.getImage01());
-            }else {
-                holder.getImage01().setVisibility(View.GONE);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        if (holder instanceof ItemOneImgHolder) {
+            final DoubanToken.PostsBean bean = mList.get(position);
+            if (bean != null) {
+                ((ItemOneImgHolder) holder).getmTitle().setText(bean.getTitle());
+                ((ItemOneImgHolder) holder).getmAuth().setText(bean.getAuthor() == null || bean.getAuthor().equals("") ? "" : bean.getAuthor().getName());
+                ((ItemOneImgHolder) holder).getmTime().setText(bean.getDate());
+                if (bean.getThumbs().size() > 0) {
+                    Glide.with(mContext)
+                            .load(bean.getThumbs().get(0).getSmall().getUrl())
+                            .error(R.drawable.ic_error)
+                            .placeholder(R.drawable.defaults)
+                            .into(((ItemOneImgHolder) holder).getImage01());
+                } else {
+                    ((ItemOneImgHolder) holder).getImage01().setVisibility(View.GONE);
+                }
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.showNews(bean);
+                    }
+                });
             }
+        }else {
+
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.showNews(bean);
-            }
-        });
+
     }
+
     @Override
     public int getItemCount() {
-        return mList==null?0:mList.size();
+        return mList.size()==0?1:mList.size() + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == mList.size()) {
+            return TYPE_FOOTER;
+        }
+            return TYPE_NORMAL;
+    }
+
+    private class FooterViewHolder extends RecyclerView.ViewHolder {
+
+        public FooterViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 }

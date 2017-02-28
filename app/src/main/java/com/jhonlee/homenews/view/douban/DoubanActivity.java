@@ -47,6 +47,8 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
     SwipeRefreshLayout refresh;
     @BindView(R.id.loading)
     ProgressBar mLoading;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     private DoubanContract.Presenter presenter;
     private List<DoubanToken.PostsBean> mList;
@@ -109,11 +111,23 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
                     if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
                         Calendar c = Calendar.getInstance();
                         c.set(mYear, mMonth, --mDay);
-                        // presenter.loadMore(c.getTimeInMillis());
+                         presenter.showMoreNews(new SimpleDateFormat("yyyy-MM-dd").format(c.getTimeInMillis()));
                     }
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
+            }
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                isSlidingToLast = dy > 0;
+
+                // 隐藏或者显示fab
+                if(dy > 0) {
+                    fab.hide();
+                } else {
+                    fab.show();
+                }
             }
         });
     }
@@ -175,6 +189,12 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
         if (mList.size() > 0) {
             mList.clear();
         }
+        mList.addAll(list);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMoreNews(List<DoubanToken.PostsBean> list) {
         mList.addAll(list);
         adapter.notifyDataSetChanged();
     }

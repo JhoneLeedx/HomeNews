@@ -21,11 +21,13 @@ public class DoubanContract {
         void showProgress();
         void dismisProgress();
         void showNews(List<DoubanToken.PostsBean> list);
+        void showMoreNews(List<DoubanToken.PostsBean> list);
     }
 
     public interface Presenter {
 
         void showNews(String date);
+        void showMoreNews(String date);
     }
 
     public interface Model {
