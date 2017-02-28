@@ -26,7 +26,9 @@ public class DBHelper extends SQLiteOpenHelper {
             + "douban_news text,"
             + "douban_time real,"
             + "douban_content text)";
-    //private static final String CREATE_TABLE_BENEFIT_SQL = "";
+    private static final String CREATE_TABLE_BENEFIT_SQL = "create table if not exists benefit("
+            + "id integer primary key autoincrement,"
+            + "benefit_url text)";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
        // sqLiteDatabase.execSQL(CREATE_TABLE_NEWS_SQL);
         sqLiteDatabase.execSQL(CREATE_TABLE_DOUBAN_SQL);
-        //sqLiteDatabase.execSQL(CREATE_TABLE_BENEFIT_SQL);
+        sqLiteDatabase.execSQL(CREATE_TABLE_BENEFIT_SQL);
     }
 
     @Override
@@ -44,8 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
        // sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_NEWS_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_DOUBAN_NAME);
-       // sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_BENEFIT_NAME);
-
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_BENEFIT_NAME);
         onCreate(sqLiteDatabase);
     }
 }

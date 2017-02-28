@@ -2,7 +2,6 @@ package com.jhonlee.homenews.presenter;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -69,11 +68,12 @@ public class DoubanPresenterImpl implements DoubanContract.Presenter{
                         @Override
                         public void onNext(DoubanToken doubanToken) {
                             view.dismisProgress();
+                            //把最新数据缓存起来
                             db.execSQL("DELETE FROM douban");
                             ContentValues values = new ContentValues();
                             for (DoubanToken.PostsBean bean : doubanToken.getPosts()){
-                                if ( !queryIfIDExists(bean.getId())) {
-                                    db.beginTransaction();
+
+                                    db.beginTransaction();//开启事务，
                                     try {
                                         values.put("douban_id", bean.getId());
                                         values.put("douban_news", gson.toJson(bean));
@@ -83,14 +83,12 @@ public class DoubanPresenterImpl implements DoubanContract.Presenter{
                                         values.put("douban_content", "");
                                         db.insert("douban", null, values);
                                         values.clear();
-                                        db.setTransactionSuccessful();
+                                        db.setTransactionSuccessful();//事务成功
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     } finally {
                                         db.endTransaction();
                                     }
-                                }
-
                             }
 
                             view.showNews(doubanToken.getPosts());
@@ -107,11 +105,11 @@ public class DoubanPresenterImpl implements DoubanContract.Presenter{
                 }while (cursor.moveToNext());
             }
             cursor.close();
+            view.dismisProgress();
             if (list.size()>0){
-                view.dismisProgress();
                 view.showNews(list);
             }else {
-                view.dismisProgress();
+
                 view.showError("网络没有，缓存也没有");
             }
 
@@ -145,20 +143,5 @@ public class DoubanPresenterImpl implements DoubanContract.Presenter{
         }else {
             view.showError("当前没有网络");
         }
-    }
-
-    private boolean queryIfIDExists(int id){
-
-        Cursor cursor = db.query("douban",null,null,null,null,null,null);
-        if (cursor.moveToFirst()){
-            do {
-                if (id == cursor.getInt(cursor.getColumnIndex("douban_id"))){
-                    return true;
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        return false;
     }
 }

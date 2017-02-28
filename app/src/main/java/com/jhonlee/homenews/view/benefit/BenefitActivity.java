@@ -76,7 +76,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         super.onResume();
     }
     private void initView(){
-        presenter = new GankPresenterImpl(this);
+        presenter = new GankPresenterImpl(this,this);
         presenter.showPic(20);
         mList = new ArrayList<>();
         adapter = new BenefitAdapter(this,mList,this);
@@ -141,15 +141,22 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
 
     @Override
     public void showPic(List<ResultBean> list) {
-        if (mList.size()>0){
+        if (mList!=null&&mList.size()>0){
             mList.clear();
+            if (list.size()>0){
+                mList.addAll(list);
+                adapter.notifyDataSetChanged();
+            }
+        }else {
+            recycle.getLayoutManager().findViewByPosition(0).setVisibility(View.GONE);
         }
-        mList.addAll(list);
-        adapter.notifyDataSetChanged();
+
     }
     @Override
     public void showMorePic(List<ResultBean> list) {
-        mList.addAll(list);
+        if (list!=null||list.size()>0){
+            mList.addAll(list);
+        }
         adapter.notifyDataSetChanged();
     }
 
