@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +21,9 @@ import com.jhonlee.homenews.contract.GankContract;
 import com.jhonlee.homenews.pojo.ResultBean;
 import com.jhonlee.homenews.presenter.GankPresenterImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -89,6 +92,37 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
                 refresh.setRefreshing(false);
             }
         });
+
+        recycle.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            boolean isSlidingToLast = false;
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+                // 当不滚动时
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // 获取最后一个完全显示的item position
+                    int column = manager.getColumnCountForAccessibility(null,null);
+                    int[] positions = new int[column];
+                    manager.findLastCompletelyVisibleItemPositions(positions);
+
+                    for (int i =0;i<positions.length;i++){
+                        if (positions[i]>=manager.getItemCount()-column
+                                && manager.findViewByPosition(positions[i]).getBottom()<=
+                                manager.getHeight()){
+                           // Log.d("log","到底了");
+                            presenter.showMorePic(20);
+                            break;
+                        }
+                    }
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
     @Override
     public void showError(String error) {
@@ -110,6 +144,11 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         if (mList.size()>0){
             mList.clear();
         }
+        mList.addAll(list);
+        adapter.notifyDataSetChanged();
+    }
+    @Override
+    public void showMorePic(List<ResultBean> list) {
         mList.addAll(list);
         adapter.notifyDataSetChanged();
     }

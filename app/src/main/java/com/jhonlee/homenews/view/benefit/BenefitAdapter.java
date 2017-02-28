@@ -10,7 +10,10 @@ import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
 import com.jhonlee.homenews.pojo.News;
 import com.jhonlee.homenews.pojo.ResultBean;
+import com.jhonlee.homenews.view.douban.DoubanAdapter;
+import com.jhonlee.homenews.view.holder.FooterViewHolder;
 import com.jhonlee.homenews.view.holder.ItemBenefitImgHolder;
+import com.jhonlee.homenews.view.holder.ItemOneImgHolder;
 import com.jhonlee.homenews.view.news.NewsListener;
 
 import java.util.List;
@@ -19,7 +22,7 @@ import java.util.List;
  * Created by JhoneLee on 2017/2/20.
  */
 
-public class BenefitAdapter extends RecyclerView.Adapter<ItemBenefitImgHolder> {
+public class BenefitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private List<ResultBean> list;
@@ -37,30 +40,51 @@ public class BenefitAdapter extends RecyclerView.Adapter<ItemBenefitImgHolder> {
     }
 
     @Override
-    public ItemBenefitImgHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int resId = R.layout.item_benefit;
-        View view = LayoutInflater.from(mContext).inflate(resId,parent,false);
-        ItemBenefitImgHolder holder = new ItemBenefitImgHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        int resId;
+        View view;
+        RecyclerView.ViewHolder holder = null;
+        if (viewType == 1) {
+            resId = R.layout.item_benefit;
+            view = LayoutInflater.from(mContext).inflate(resId,parent,false);
+            holder = new ItemBenefitImgHolder(view);
+        } else if (viewType == 0) {
+            resId = R.layout.list_footer;
+            view = LayoutInflater.from(mContext).inflate(resId, parent, false);
+            holder = new FooterViewHolder(view);
+        }
         return holder;
+
     }
 
     @Override
-    public void onBindViewHolder(ItemBenefitImgHolder holder, int position) {
-        final ResultBean bean = list.get(position);
-        Glide.with(mContext)
-                .load(bean.getUrl())
-                .placeholder(R.drawable.defaults)
-                .into(holder.getmImg());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.showPic(bean);
-            }
-        });
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (!(holder instanceof FooterViewHolder)){
+            final ResultBean bean = list.get(position);
+            Glide.with(mContext)
+                    .load(bean.getUrl())
+                    .placeholder(R.drawable.defaults)
+                    .into(((ItemBenefitImgHolder)holder).getmImg());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.showPic(bean);
+                }
+            });
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return list==null?0:list.size();
+        return list==null?1:list.size()+1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == list.size())
+            return 0;
+        return 1;
     }
 }

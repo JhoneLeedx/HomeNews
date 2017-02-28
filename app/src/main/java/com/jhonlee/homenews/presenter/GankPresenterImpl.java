@@ -48,4 +48,26 @@ public class GankPresenterImpl implements GankContract.Presenter{
             }
         });
     }
+
+    @Override
+    public void showMorePic(int num) {
+        Observable<GankInfoToken> observable = model.showPic(num);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GankInfoToken>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.showError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(GankInfoToken gankInfoToken) {
+                        view.showMorePic(gankInfoToken.getResults());
+                    }
+                });
+    }
 }

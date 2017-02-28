@@ -19,11 +19,13 @@ public class GankContract {
         void showProgress();
         void dismisProgress();
         void showPic(List<ResultBean> list);
+        void showMorePic(List<ResultBean> list);
     }
 
     public interface Presenter {
 
         void showPic(int num);
+        void showMorePic(int num);
     }
 
     public interface Model {

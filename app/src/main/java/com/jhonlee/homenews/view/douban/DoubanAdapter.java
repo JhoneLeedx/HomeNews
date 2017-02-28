@@ -56,7 +56,7 @@ public class DoubanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if (holder instanceof ItemOneImgHolder) {
             final DoubanToken.PostsBean bean = mList.get(position);
             if (bean != null) {
-                ((ItemOneImgHolder) holder).getmTitle().setText(bean.getTitle());
+                ((ItemOneImgHolder) holder).getmTitle().setText(bean.getAbstractX());
                 ((ItemOneImgHolder) holder).getmAuth().setText(bean.getAuthor() == null || bean.getAuthor().equals("") ? "" : bean.getAuthor().getName());
                 ((ItemOneImgHolder) holder).getmTime().setText(bean.getDate());
                 if (bean.getThumbs().size() > 0) {
@@ -94,7 +94,7 @@ public class DoubanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             return TYPE_NORMAL;
     }
 
-    private class FooterViewHolder extends RecyclerView.ViewHolder {
+    public class FooterViewHolder extends RecyclerView.ViewHolder {
 
         public FooterViewHolder(View itemView) {
             super(itemView);
