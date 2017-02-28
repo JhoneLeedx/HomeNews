@@ -75,7 +75,7 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
     }
 
     private void initView() {
-        presenter = new DoubanPresenterImpl(this);
+        presenter = new DoubanPresenterImpl(this,this);
         final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         presenter.showNews(format.format(Calendar.getInstance().getTimeInMillis()));
         mList = new ArrayList<>();
@@ -189,13 +189,18 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
         if (mList.size() > 0) {
             mList.clear();
         }
-        mList.addAll(list);
-        adapter.notifyDataSetChanged();
+        if (list.size()>0){
+            mList.addAll(list);
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
     public void showMoreNews(List<DoubanToken.PostsBean> list) {
-        mList.addAll(list);
+        if (list!=null||list.size()>0){
+            mList.addAll(list);
+        }
         adapter.notifyDataSetChanged();
     }
 

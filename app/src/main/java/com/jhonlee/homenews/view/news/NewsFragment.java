@@ -1,5 +1,6 @@
 package com.jhonlee.homenews.view.news;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * Created by JhoneLee on 2017/2/17.
  */
-
+@SuppressLint("ValidFragment")
 public class NewsFragment extends Fragment implements NewsContract.View,NewsListener {
 
     @BindView(R.id.recycle)
