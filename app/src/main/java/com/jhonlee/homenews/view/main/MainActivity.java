@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
     private void initTabTitle() {
 
         mTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-        adapter = new ViewpagerAdapter(getSupportFragmentManager(), tableTitle, getList(), this);
+        adapter = new ViewpagerAdapter(getSupportFragmentManager(), tableTitle, getList());
         viewPager.setAdapter(adapter);
 
         //将tabLayout和ViewPager绑定
