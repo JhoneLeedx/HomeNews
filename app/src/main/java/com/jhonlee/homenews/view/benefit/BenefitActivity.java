@@ -143,21 +143,19 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
     public void showPic(List<ResultBean> list) {
         if (mList!=null&&mList.size()>0){
             mList.clear();
-            if (list.size()>0){
-                mList.addAll(list);
-                adapter.notifyDataSetChanged();
             }
-        }else {
-            recycle.getLayoutManager().findViewByPosition(0).setVisibility(View.GONE);
+        if (list.size()>0){
+            mList.addAll(list);
+            adapter.notifyDataSetChanged();
         }
-
     }
     @Override
     public void showMorePic(List<ResultBean> list) {
-        if (list!=null||list.size()>0){
+        if (list!=null&&list.size()>0){
             mList.addAll(list);
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
+
     }
 
     @Override

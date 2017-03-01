@@ -33,6 +33,7 @@
         <activity android:name=".view.benefit.BenefitDetailActivity" />
         <activity android:name=".view.send.WebViewActivity" />
         <activity android:name=".view.douban.DoubanActivity" />
+        <activity android:name=".view.setting.SettingActivity" />
     </application>
 
 </manifest>

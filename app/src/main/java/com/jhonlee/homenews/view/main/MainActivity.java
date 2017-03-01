@@ -195,6 +195,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_douban:
                 startActivity(new Intent(this,DoubanActivity.class));
                 break;
+            case R.id.nav_about:
+                break;
+            case R.id.nav_setting:
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

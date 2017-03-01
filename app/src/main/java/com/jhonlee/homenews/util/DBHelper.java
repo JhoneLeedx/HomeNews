@@ -19,7 +19,10 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_DOUBAN_NAME = "douban";
     private static final String TABLE_BENEFIT_NAME = "benefit";
     //创建表语句字符串
-    //private static final String CREATE_TABLE_NEWS_SQL = "create table news(id integer primary key,news text)";
+    private static final String CREATE_TABLE_NEWS_SQL = "create table news("
+            + "id integer primary key autoincrement,"
+            + "toutiao_news text,"
+            + "news_type text)";
     private static final String CREATE_TABLE_DOUBAN_SQL = "create table if not exists douban("
             + "id integer primary key autoincrement,"
             + "douban_id integer not null,"
@@ -36,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-       // sqLiteDatabase.execSQL(CREATE_TABLE_NEWS_SQL);
+        sqLiteDatabase.execSQL(CREATE_TABLE_NEWS_SQL);
         sqLiteDatabase.execSQL(CREATE_TABLE_DOUBAN_SQL);
         sqLiteDatabase.execSQL(CREATE_TABLE_BENEFIT_SQL);
     }
@@ -44,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-       // sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_NEWS_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_NEWS_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_DOUBAN_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_BENEFIT_NAME);
         onCreate(sqLiteDatabase);

@@ -198,7 +198,7 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
 
     @Override
     public void showMoreNews(List<DoubanToken.PostsBean> list) {
-        if (list!=null||list.size()>0){
+        if (list!=null&&list.size()>0){
             mList.addAll(list);
         }
         adapter.notifyDataSetChanged();

@@ -56,7 +56,7 @@ public class MainNewsActivity extends AppCompatActivity {
             mTab.addTab(mTab.newTab().setText(tableTitle[i]));
         }
         mTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-        adapter = new ViewpagerAdapter(getSupportFragmentManager(), tableTitle, getList(), this);
+        adapter = new ViewpagerAdapter(getSupportFragmentManager(), tableTitle, getList());
         viewPager.setAdapter(adapter);
 
         //将tabLayout和ViewPager绑定

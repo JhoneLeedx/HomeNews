@@ -17,13 +17,11 @@ public class  ViewpagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] tabTitleArray;
     private  List<Fragment> fragmentList;
-    private Context mContext;
 
-    public ViewpagerAdapter(FragmentManager fm, String[] tabTitleArray, List<Fragment> fragmentList, Context mContext) {
+    public ViewpagerAdapter(FragmentManager fm, String[] tabTitleArray, List<Fragment> fragmentList) {
         super(fm);
         this.tabTitleArray = tabTitleArray;
         this.fragmentList = fragmentList;
-        this.mContext = mContext;
     }
 
     @Override

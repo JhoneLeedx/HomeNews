@@ -70,7 +70,7 @@ public class GankPresenterImpl implements GankContract.Presenter{
                         @Override
                         public void onNext(GankInfoToken gankInfoToken) {
                             view.dismisProgress();
-                            view.showPic(gankInfoToken.getResults());
+
                             db.execSQL("DELETE FROM benefit");
                             ContentValues values = new ContentValues();
                             for(ResultBean bean: gankInfoToken.getResults()){
@@ -86,6 +86,7 @@ public class GankPresenterImpl implements GankContract.Presenter{
                                     db.endTransaction();
                                 }
                             }
+                            view.showPic(gankInfoToken.getResults());
                         }
                     });
         }else {
