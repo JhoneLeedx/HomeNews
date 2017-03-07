@@ -8,7 +8,7 @@ public class Constants {
 
     public static final String NEWS_URL = "http://v.juhe.cn/toutiao/";
     public static final String ROBOT_URL = "http://op.juhe.cn/robot/";
-    public static final String NBA_URL = "http://op.juhe.cn/onebox/basketball/nba/";
+    public static final String NBA_URL = "http://op.juhe.cn/onebox/basketball/";
     public static final String GANK_URL = "http://gank.io/api/random/data/";
 
     public static final String DOUBAN_URL = "https://moment.douban.com/api/stream/date/";

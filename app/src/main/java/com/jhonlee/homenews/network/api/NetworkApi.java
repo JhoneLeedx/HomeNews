@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.jhonlee.homenews.network.IDouban;
 import com.jhonlee.homenews.network.IGankInfo;
+import com.jhonlee.homenews.network.INBARequest;
 import com.jhonlee.homenews.network.INewsRequest;
 import com.jhonlee.homenews.network.IRobot;
 import com.jhonlee.homenews.pojo.GankInfoToken;
@@ -41,7 +42,7 @@ public class NetworkApi {
     private IGankInfo info;
     private IRobot robot;
     private IDouban douban;
-
+    private INBARequest nba;
 
     private NetworkApi(){
         newRf = getRetrofit(Constants.NEWS_URL);
@@ -54,6 +55,11 @@ public class NetworkApi {
         info = gankRf.create(IGankInfo.class);
         robot = robotRf.create(IRobot.class);
         douban =doubanRf.create(IDouban.class);
+        nba = nbaRf.create(INBARequest.class);
+    }
+
+    public INBARequest getNBA() {
+        return nba;
     }
 
     public IDouban getDouban() {
