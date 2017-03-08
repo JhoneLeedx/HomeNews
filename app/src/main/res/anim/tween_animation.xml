@@ -5,25 +5,25 @@
     <!--
     fromAlpha       动画开始的透明度 （0.0到1.0，0.0是全透明，1.0是不透明）
     toAlpha         动画结束时的透明度-->
-    <alpha android:fromAlpha="0.5"
+  <!--  <alpha android:fromAlpha="0.5"
         android:toAlpha="1.0"/>
 
-    <!--画面转移旋转动画效果-->
-    <!--
+    &lt;!&ndash;画面转移旋转动画效果&ndash;&gt;
+    &lt;!&ndash;
         fromDegrees     初始X轴缩放比例，1.0表示无变化
         toDegrees       旋转结束角度，正代表顺时针度数，负代表逆时针度数
         pivotX          缩放起点X坐标（数值、百分数、百分数p，
                         比如50表示以当前View左上角坐标加50px为初始点、50%表示以当前View的左上角
                         加上当前View宽高的50%做为初始点、50%p表示以当前View的左上角加上父控件宽高的50%做为初始点）
         pivotY          缩放起点Y坐标，同上规律
-    -->
+    &ndash;&gt;
     <rotate android:fromDegrees=""
         android:pivotX=""
         android:pivotY=""
         android:toDegrees=""/>
 
-    <!--渐变尺寸伸缩动画效果-->
-    <!--
+    &lt;!&ndash;渐变尺寸伸缩动画效果&ndash;&gt;
+    &lt;!&ndash;
     fromXScale  初始X轴缩放比例，1.0表示无变化
     toXScale    结束X轴缩放比例
     fromYScale  初始Y轴缩放比例
@@ -32,7 +32,7 @@
                 50%表示以当前View的左上角加上当前View宽高的50%做为初始点、
                 50%p表示以当前View的左上角加上父控件宽高的50%做为初始点）
     pivotY      缩放起点Y轴坐标，同上规律
-    -->
+    &ndash;&gt;
     <scale
         android:pivotY=""
         android:pivotX=""
@@ -41,8 +41,8 @@
         android:toXScale=""
         android:toYScale="" />
 
-    <!--画面转换位置移动动画效果-->
-    <!--
+    &lt;!&ndash;画面转换位置移动动画效果&ndash;&gt;
+    &lt;!&ndash;
     fromXDelta  起始点X轴坐标（数值、百分数、百分数p，譬如50表示以当前View左上角坐标加50px为初始点、
                 50%表示以当前View的左上角加上当前View宽高的50%做为初始点、
                 50%p表示以当前View的左上角加上父控件宽高的50%做为初始点）
@@ -50,7 +50,7 @@
 
     fromYDelta  起始点Y轴从标，同上规律
     toYDelta    结束点Y轴坐标，同上规律
-    -->
+    &ndash;&gt;
 
     <translate
         android:fromXDelta=""
@@ -58,6 +58,6 @@
         android:toXDelta=""
         android:toYDelta=""/>
 
-    <!--一个持有其它动画元素alpha、scale、translate、rotate或者其它set元素的容器-->
-    <set/>
+    &lt;!&ndash;一个持有其它动画元素alpha、scale、translate、rotate或者其它set元素的容器&ndash;&gt;
+    <set/>-->
 </set>
