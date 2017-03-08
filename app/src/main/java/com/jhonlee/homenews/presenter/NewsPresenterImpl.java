@@ -29,7 +29,7 @@ public class NewsPresenterImpl implements NewsContract.Presenter {
 
     @Override
     public void showNews(String type) {
-
+        view.showProgress();
         Observable<Token> observable = model.getNews(type);
         observable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
