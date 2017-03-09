@@ -1,6 +1,9 @@
 package com.jhonlee.homenews.contract;
 
 import com.jhonlee.homenews.pojo.NBAToken;
+import com.jhonlee.homenews.pojo.Tr;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -15,7 +18,7 @@ public class NBAContract {
         void showError(String error);
         void showProgress();
         void dismisProgress();
-        void showNBANews();
+        void showNBANews(NBAToken nab);
     }
 
     public interface Presenter{

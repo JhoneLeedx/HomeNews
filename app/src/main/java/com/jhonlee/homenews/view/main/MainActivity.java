@@ -31,6 +31,7 @@ import com.jhonlee.homenews.util.SharedPreferenceUtil;
 import com.jhonlee.homenews.view.benefit.BenefitActivity;
 import com.jhonlee.homenews.view.douban.DoubanActivity;
 import com.jhonlee.homenews.view.douban.DoubanAdapter;
+import com.jhonlee.homenews.view.nba.NBAActivity;
 import com.jhonlee.homenews.view.news.NewsFragment;
 import com.jhonlee.homenews.view.send.SendActivity;
 import com.jhonlee.homenews.view.send.WebViewActivity;
@@ -185,12 +186,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        switch (item.getItemId()) {
+        switch (id) {
             case R.id.nav_pic:
                 startActivity(new Intent(this,BenefitActivity.class));
                 break;
             case R.id.nav_nba:
-                startActivity(new Intent(this,WebViewActivity.class));
+                startActivity(new Intent(this,NBAActivity.class));
                 break;
             case R.id.nav_douban:
                 startActivity(new Intent(this,DoubanActivity.class));
@@ -202,9 +203,5 @@ public class MainActivity extends AppCompatActivity
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-    public void startIntent(Activity activity){
-        Intent intent = new Intent(this,activity.getClass());
-        startActivity(intent);
     }
 }
