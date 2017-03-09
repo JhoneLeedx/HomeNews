@@ -72,6 +72,7 @@ public class NBAActivity extends AppCompatActivity implements NBAContract.View{
 
         if (item.getItemId() == android.R.id.home){
             finish();
+            overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
         }
         return super.onOptionsItemSelected(item);
     }

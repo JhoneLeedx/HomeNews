@@ -99,7 +99,6 @@ public class NBAFutureFragment extends Fragment implements NBAContract.View, NBA
     public void showNBANews(NBAToken nab) {
 
         //Message msg = new Message();
-
         if (nab.getResult().getList() != null && nab.getResult().getList().size() > 0) {
             List<Tr> list = new ArrayList<Tr>();
             for (ListBean bean : nab.getResult().getList()) {
@@ -143,5 +142,6 @@ public class NBAFutureFragment extends Fragment implements NBAContract.View, NBA
         intent.putExtra("url",url);
         // intent.putExtra("imgurl",((News)news).getThumbnail_pic_s());
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
     }
 }

@@ -139,5 +139,6 @@ public class NBALivingFragment extends Fragment implements NBAContract.View, NBA
         intent.putExtra("url",url);
         // intent.putExtra("imgurl",((News)news).getThumbnail_pic_s());
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
     }
 }

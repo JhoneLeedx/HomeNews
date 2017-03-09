@@ -115,6 +115,7 @@ public class NBADetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
                 break;
         }
         return super.onOptionsItemSelected(item);

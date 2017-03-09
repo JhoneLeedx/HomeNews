@@ -1,4 +1,4 @@
-package com.jhonlee.homenews.view.setting;
+package com.jhonlee.homenews.view.about;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,11 +12,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by JhoneLee on 2017/3/1.
+ * Created by JhoneLee on 2017/3/9.
  */
 
-public class SettingActivity extends AppCompatActivity {
-
+public class AboutActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -24,9 +23,9 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
-        toolbar.setTitle("设置");
+        toolbar.setTitle("关于");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

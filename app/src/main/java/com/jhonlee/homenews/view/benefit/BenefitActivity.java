@@ -66,6 +66,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -164,6 +165,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         intent.putExtra("url",resultBean.getUrl());
         intent.putExtra("author",resultBean.getWho());
         startActivity(intent);
+        overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
     }
 
     @Override

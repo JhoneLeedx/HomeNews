@@ -163,6 +163,7 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -211,5 +212,6 @@ public class DoubanActivity extends AppCompatActivity implements DoubanContract.
         intent.putExtra("url", ((DoubanToken.PostsBean) news).getUrl());
         intent.putExtra("imgurl", ((DoubanToken.PostsBean) news).getThumbs().size() == 0 ? "" : ((DoubanToken.PostsBean) news).getThumbs().get(0).getLarge().getUrl());
         startActivity(intent);
+        overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
     }
 }
