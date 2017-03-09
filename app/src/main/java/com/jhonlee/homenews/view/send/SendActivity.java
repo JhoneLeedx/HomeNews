@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.jhonlee.homenews.R;
 import com.jhonlee.homenews.contract.RobotContract;
 import com.jhonlee.homenews.pojo.Message;
-import com.jhonlee.homenews.pojo.Robot;
 import com.jhonlee.homenews.presenter.RobotPresenterImpl;
 
 import java.util.ArrayList;
@@ -91,7 +90,7 @@ public class SendActivity extends AppCompatActivity implements RobotContract.Vie
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
-                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in, R.anim.anim_activity_left_out);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -21,9 +19,7 @@ import com.jhonlee.homenews.contract.GankContract;
 import com.jhonlee.homenews.pojo.ResultBean;
 import com.jhonlee.homenews.presenter.GankPresenterImpl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -66,7 +62,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
-                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in, R.anim.anim_activity_left_out);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -165,7 +161,7 @@ public class BenefitActivity extends AppCompatActivity implements GankContract.V
         intent.putExtra("url",resultBean.getUrl());
         intent.putExtra("author",resultBean.getWho());
         startActivity(intent);
-        overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+        overridePendingTransition(R.anim.anim_activity_right_in,R.anim.anim_activity_right_out);
     }
 
     @Override

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -58,7 +57,7 @@ public class BenefitDetailActivity extends AppCompatActivity{
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
-                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in, R.anim.anim_activity_left_out);
                 break;
         }
         return super.onOptionsItemSelected(item);

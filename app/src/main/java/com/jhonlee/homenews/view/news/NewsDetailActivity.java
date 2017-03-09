@@ -1,14 +1,10 @@
 package com.jhonlee.homenews.view.news;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -17,8 +13,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
@@ -128,7 +122,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in, R.anim.anim_activity_left_out);
                 break;
         }
         return super.onOptionsItemSelected(item);

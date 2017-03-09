@@ -1,18 +1,12 @@
 package com.jhonlee.homenews.view.main;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,20 +18,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 
 import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
-import com.jhonlee.homenews.util.SharedPreferenceUtil;
 import com.jhonlee.homenews.view.about.AboutActivity;
 import com.jhonlee.homenews.view.benefit.BenefitActivity;
 import com.jhonlee.homenews.view.douban.DoubanActivity;
-import com.jhonlee.homenews.view.douban.DoubanAdapter;
 import com.jhonlee.homenews.view.nba.NBAActivity;
 import com.jhonlee.homenews.view.news.NewsFragment;
 import com.jhonlee.homenews.view.send.SendActivity;
-import com.jhonlee.homenews.view.send.WebViewActivity;
 import com.jhonlee.homenews.view.setting.SettingActivity;
 
 import java.util.ArrayList;
@@ -112,7 +102,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(),SendActivity.class));
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_right_in,R.anim.anim_activity_right_out);
             }
         });
     }
@@ -194,23 +184,23 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_pic:
                 startActivity(new Intent(this,BenefitActivity.class));
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in,R.anim.anim_activity_left_out);
                 break;
             case R.id.nav_nba:
                 startActivity(new Intent(this,NBAActivity.class));
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in,R.anim.anim_activity_left_out);
                 break;
             case R.id.nav_douban:
                 startActivity(new Intent(this,DoubanActivity.class));
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in,R.anim.anim_activity_left_out);
                 break;
             case R.id.nav_about:
                 startActivity(new Intent(this,AboutActivity.class));
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in,R.anim.anim_activity_left_out);
                 break;
             case R.id.nav_setting:
                 startActivity(new Intent(this,SettingActivity.class));
-                overridePendingTransition(R.anim.anim_activity_in,R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in,R.anim.anim_activity_left_out);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

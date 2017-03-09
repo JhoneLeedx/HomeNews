@@ -11,10 +11,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.bumptech.glide.Glide;
 import com.jhonlee.homenews.R;
 
 import butterknife.BindView;
@@ -115,7 +113,7 @@ public class NBADetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
+                overridePendingTransition(R.anim.anim_activity_left_in, R.anim.anim_activity_left_out);
                 break;
         }
         return super.onOptionsItemSelected(item);

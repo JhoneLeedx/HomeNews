@@ -36,7 +36,7 @@ public class SettingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home)
             finish();
-        overridePendingTransition(R.anim.anim_activity_in, R.anim.anim_activity_out);
+        overridePendingTransition(R.anim.anim_activity_left_in, R.anim.anim_activity_left_out);
         return super.onOptionsItemSelected(item);
     }
 }
