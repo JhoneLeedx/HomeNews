@@ -36,7 +36,7 @@ public class CacheService extends Service {
         db = dbHelper.getWritableDatabase();
 
         IntentFilter filter = new IntentFilter();
-        filter.addAction("com.marktony.zhihudaily.LOCAL_BROADCAST");
+        filter.addAction("com.jhonlee.homenews.LOCAL_BROADCAST");
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
         manager.registerReceiver(new LocalReceiver(), filter);
 

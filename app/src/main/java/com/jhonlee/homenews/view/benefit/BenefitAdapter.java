@@ -2,6 +2,7 @@ package com.jhonlee.homenews.view.benefit;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,5 +87,21 @@ public class BenefitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (position == list.size())
             return 0;
         return 1;
+    }
+    //  解决StaggeredGridLayoutManager占满一行
+    @Override
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        int index = holder.getLayoutPosition();
+        if (index == 0){
+            ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+            if (lp != null
+                    && lp instanceof StaggeredGridLayoutManager.LayoutParams)
+            {
+                StaggeredGridLayoutManager.LayoutParams p =
+                        (StaggeredGridLayoutManager.LayoutParams) lp;
+                p.setFullSpan(true);
+            }
+        }
     }
 }
